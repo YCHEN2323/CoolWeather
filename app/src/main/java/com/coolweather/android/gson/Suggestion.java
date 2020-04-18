@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Suggestion {
 
     @SerializedName("comf")
-    public CorFort corFort;
+    public Corfort corfort;
 
     @SerializedName("cw")
     public CarWash carWash;
@@ -13,7 +13,7 @@ public class Suggestion {
     public Sport sport;
 
     //舒适度信息文本的获得
-    public class CorFort{
+    public class Corfort{
         @SerializedName("txt")
         public String info;
     }
