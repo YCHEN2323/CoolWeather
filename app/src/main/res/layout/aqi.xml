@@ -26,8 +26,7 @@
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:ignore="Suspicious0dp">
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/aqi_text"
@@ -45,10 +44,10 @@
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            tools:ignore="Suspicious0dp" >
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/pm25_text"
