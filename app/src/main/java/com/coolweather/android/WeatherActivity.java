@@ -183,8 +183,6 @@ public class WeatherActivity extends AppCompatActivity {
         weatherInfoText.setText(weatherInfo);
         forecastLayout.removeAllViews();
 
-        Intent intent = new Intent(this, AutoUpdateService.class);
-        startService(intent);
         for(Forecast forecast:weather.forecastList){    // 循环处理每天的天气信息
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item,forecastLayout,false);
             // 加载布局
@@ -212,6 +210,10 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carWash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);  // 将天气信息设置为可见
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
+
+
     }
 
     private void loadBingPic(){

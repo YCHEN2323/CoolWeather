@@ -28,21 +28,22 @@ public class AutoUpdateService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
-       return null;
+        return null;
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-       updateWeather();
-       updateBingPic();
-       AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-       int anHour = 60 * 60 * 1000;
-       long triggerAtTime = SystemClock.elapsedRealtime() +anHour;
-       Intent i = new Intent(this,AutoUpdateService.class);
-       PendingIntent pi = PendingIntent.getService(this,0,i,0);
-       manager.cancel(pi);
-       manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);
-       return super.onStartCommand(intent, flags, startId);
+        updateWeather();    // 更新天气
+        updateBingPic();    // 更新背景图片
+        //定时任务
+        AlarmManager manager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        int anHour = 60 * 60 * 1000; // 1 小时
+        long triggerAtTime = SystemClock.elapsedRealtime() + anHour;    // 设置触发时间
+        Intent i = new Intent(this,AutoUpdateService.class);
+        PendingIntent pi = PendingIntent.getService(this,0,i,0);
+        manager.cancel(pi);
+        manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);
+        return super.onStartCommand(intent,flags,startId);
     }
 
     private void updateWeather(){
@@ -74,9 +75,7 @@ public class AutoUpdateService extends Service {
             });
         }
     }
-    /**
-     * 更行必应每日一图
-     */
+
     private void updateBingPic(){
         String requestBingPic="http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {
@@ -93,4 +92,6 @@ public class AutoUpdateService extends Service {
             }
         });
     }
+
+
 }
