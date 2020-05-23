@@ -5,6 +5,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -181,6 +182,9 @@ public class WeatherActivity extends AppCompatActivity {
         degreeText.setText(degree);
         weatherInfoText.setText(weatherInfo);
         forecastLayout.removeAllViews();
+
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
         for(Forecast forecast:weather.forecastList){    // 循环处理每天的天气信息
             View view = LayoutInflater.from(this).inflate(R.layout.forecast_item,forecastLayout,false);
             // 加载布局
